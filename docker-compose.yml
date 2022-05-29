@@ -1,0 +1,39 @@
+version: "3.4"
+
+services:
+#  node:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#      target: dev
+#    container_name: ds_queue_node
+#    volumes:
+#      - ./node_modules:/usr/src/app/node_modules
+#      - .:/usr/src/app/
+#    networks:
+#      - discord_bot
+  redis-commander:
+    container_name: ds_redis_commander
+    image: rediscommander/redis-commander
+    restart: always
+    networks:
+      - discord_bot
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+  redis:
+    image: redis
+    container_name: ds_queue_redis
+    command: redis-server --save 60 1 --loglevel warning
+    networks:
+      - discord_bot
+    ports:
+      - "6379:6379"
+    volumes:
+      - cache:/data
+networks:
+  discord_bot:
+volumes:
+  cache:
+    driver: local

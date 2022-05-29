@@ -1,0 +1,6 @@
+{
+  "help": "No sabes cómo funciona el bot? Aquí tienes algunos ejemplos",
+  "localization": "Configurar idioma del bot",
+  "add_user": "Añadir nuevo usuario al ranking",
+  "settings": "Configura el canal en el que se mostrará el ranking, y el permiso necesario para usar los comandos"
+}

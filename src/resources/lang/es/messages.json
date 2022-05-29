@@ -1,0 +1,11 @@
+{
+  "ready": "Hey! Estoy listo",
+  "localization_config_init": "Configurando idioma del bot.... espera un momento",
+  "localization_configured": "Configurado correctamente el idioma, ahora hablo español",
+  "locale_config_error": "Localización, no reconocida. Asegurate de escribir `eng` o `es`.",
+  "help_description": "Configurar el lenguage del bot",
+  "add_user": "Añadiendo nuevo usuario y actualizando ranking... Esto puede llevar un par de segundos, sé paciente",
+  "add_user_error_username": "Por favor, asegurate de añadir la etiqueta. Ejemplo: ValorantPlayer#EUW",
+  "game_tag_not_found": "Usuario `_REPLACE_` no encontrado. Asegurate de escribir correctamente los datos",
+  "add_user_successfully": "Usuario `_REPLACE_` añadido correctamente."
+}
