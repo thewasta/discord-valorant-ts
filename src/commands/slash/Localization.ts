@@ -22,7 +22,13 @@ const Localization: Command = {
         if (interactionOptionValue?.value === "es" || interactionOptionValue?.value === "eng") {
             content = utils.translate("messages.localization_config_init", guildId);
             await queue.add("low", {
-                command: "localization",
+                command: {
+                    by: {
+                        user: interaction.user.tag,
+                        userId: interaction.user.id
+                    },
+                    name: "localization"
+                },
                 channel: interaction.channelId,
                 guild: interaction.guildId as string,
                 payload: {

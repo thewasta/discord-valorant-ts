@@ -16,12 +16,18 @@ const queues = Object.values(jobs).map(job => ({
     onError: job.onError
 }));
 
+interface iCommand {
+    by: {
+        user: string
+        userId: string
+    },
+    name: string
+}
+
 interface iJobData {
-    command: string,
+    command: iCommand,
     channel?: string;
     guild?: string;
-    dsUser?: string
-    dsUserId?: string
     payload?: any;
 }
 

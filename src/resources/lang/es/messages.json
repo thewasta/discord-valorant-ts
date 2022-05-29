@@ -7,5 +7,7 @@
   "add_user": "Añadiendo nuevo usuario y actualizando ranking... Esto puede llevar un par de segundos, sé paciente",
   "add_user_error_username": "Por favor, asegurate de añadir la etiqueta. Ejemplo: ValorantPlayer#EUW",
   "game_tag_not_found": "Usuario `_REPLACE_` no encontrado. Asegurate de escribir correctamente los datos",
-  "add_user_successfully": "Usuario `_REPLACE_` añadido correctamente."
+  "add_user_successfully": "Usuario `_REPLACE_` añadido correctamente.",
+  "find_user": "Buscando usuario `_REPLACE_`... Esto llevará un momento, sé paciente",
+  "find_user_finished": "Usuario encontrado..."
 }

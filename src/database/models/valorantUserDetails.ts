@@ -1,6 +1,6 @@
 import {Schema, model} from "mongoose";
 
-interface IValorantUserDetails {
+export interface IValorantUserDetails {
     "guild": string;
     "ds_user": string;
     "ds_user_id": string;
@@ -33,4 +33,4 @@ const valorantUserDetails = new Schema<IValorantUserDetails>({
         timestamps: true
     });
 
-export default model<IValorantUserDetails>("ValoranUserDetails", valorantUserDetails);
+export default model<IValorantUserDetails>("UserDetails", valorantUserDetails);

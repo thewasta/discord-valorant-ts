@@ -4,8 +4,11 @@
   "localization_configured": "Configured correctly language, now I speak english",
   "locale_config_error": "Locale, not recognized. Make sure to write `eng` or `es`.",
   "help_description": "Configurate bot language",
-  "add_user": "Adding new user and updating ranking... This may take a few seconds, please be patient",
+  "add_user": "Adding new user and updating ranking... This may take a while, please be patient",
   "add_user_error_username": "Please make sure to add tag. Example: ValorantPlayer#EUW",
+  "add_user_discord_error": "Discord name not valid: `_REPLACE_`. Example: TheWasta#7811 ",
   "game_tag_not_found": "User `_REPLACE_` not found. Make sure you gave me the correct nick and tag",
-  "add_user_successfully": "User `_REPLACE_` added successfully"
+  "add_user_successfully": "User `_REPLACE_` added successfully",
+  "find_user": "Finding user `_REPLACE_`... This may take a while, please be patient",
+  "find_user_finished": "User found..."
 }

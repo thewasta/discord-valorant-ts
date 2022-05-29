@@ -15,7 +15,7 @@ config({
 });
 const token = process.env.TOKEN;
 
-export const client = new Client({
+export const client: Client = new Client({
     intents: []
 });
 queue.process();
