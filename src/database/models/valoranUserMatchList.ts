@@ -6,6 +6,7 @@ export interface IValorantUserMatchList {
     ds_user_id: string;
     ds_user: string;
     puuid: string;
+    lastUpdate: number,
     matchList: HistoryMatches[];
 }
 
@@ -24,6 +25,10 @@ const valorantUserMatchList = new Schema<IValorantUserMatchList>({
     },
     matchList: {
         type: [], required: true
+    },
+    lastUpdate: {
+        type: Number,
+        required: true
     }
 }, {
     timestamps: true

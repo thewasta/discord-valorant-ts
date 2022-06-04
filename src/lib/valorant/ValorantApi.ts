@@ -1,12 +1,15 @@
-import axios, {AxiosInstance} from "axios";
+import axios, {AxiosInstance, AxiosResponse} from "axios";
 import {Regions} from "./types/regions";
 import {Match} from "./Match";
 import app from "../../config/app";
+import {Ranked} from "./Ranked";
 
 class ValorantApi {
     private readonly region: Regions;
 
     public Match: Match;
+
+    public leaderboard: Ranked;
 
     constructor(token: string, region: Regions) {
         if (!token) {
@@ -26,6 +29,7 @@ class ValorantApi {
         });
 
         this.Match = new Match(axiosInstance);
+        this.leaderboard = new Ranked(axiosInstance);
     }
 }
 

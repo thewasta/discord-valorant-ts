@@ -1,8 +1,8 @@
-import {iPayload} from "./iPayload";
-import ServerSchema from "../../database/models/ServerSchema";
+import {iPayload} from "../iPayload";
 import {DoneCallback} from "bull";
-import localDatabase from "../../config/localDatabase";
-import {Server} from "../../util/types/App/Server";
+import localDatabase from "../../../config/localDatabase";
+import {Server} from "../../../util/types/App/Server";
+import ServerSchema from "../../../database/models/serverSchema";
 
 export default async function (payload: iPayload, done: DoneCallback) {
     /**

@@ -1,5 +1,5 @@
 import {Command} from "../../Command";
-import {BaseCommandInteraction, CacheType, Client, Constants, GuildMember, User} from "discord.js";
+import {BaseCommandInteraction, Client, Constants, GuildMember, User} from "discord.js";
 import utils from "../../util/utils";
 import {queue} from "../../queue/queue";
 
@@ -8,37 +8,43 @@ import {queue} from "../../queue/queue";
  * */
 const AddUser: Command = {
     name: "add",
+    type: "CHAT_INPUT",
     description: utils.translate("commands.add_user"),
     options: [
         {
             name: "username",
-            description: "Example: UserName#EUW",
+            description: "Example: QuizásTeInsulto#EUW",
             type: Constants.ApplicationCommandOptionTypes.STRING,
             required: true
         },
         {
             name: "target",
-            description: "Discord user target. Write Discord discriminator, example: TheWasta#7811. If not passed, your Discord profile will be linked",
-            type: Constants.ApplicationCommandOptionTypes.STRING,
+            description: "Discord user target. If empty, target will be you",
+            type: Constants.ApplicationCommandOptionTypes.USER,
             required: false
         }
     ],
     run: async (client: Client, interaction: BaseCommandInteraction) => {
         const userGameID: string = interaction.options.get("username")?.value as string;
-        let discordUserTarget: string = interaction.options.get("target")?.value as string;
+        let discordUserTarget: User | null = interaction.options.getUser("target");
         if (!userGameID.includes("#")) {
             await ensureValorantProfile(interaction);
-        }
-        if (!discordUserTarget.includes("#")) {
-            await ensureDiscorTarget(interaction);
             return;
         }
+
         if (!discordUserTarget) {
-            discordUserTarget = interaction.user.tag;
+            discordUserTarget = interaction.user;
         }
 
-        await sendToQueue(interaction, userGameID, discordUserTarget);
+        const sendQueue = await sendToQueue(interaction, userGameID, discordUserTarget);
 
+        if (!sendQueue) {
+            await interaction.followUp({
+                ephemeral: true,
+                content: utils.translate("errors.add_user_not_found", interaction.guildId || "", discordUserTarget.tag)
+            });
+            return;
+        }
         await interaction.followUp({
             ephemeral: true,
             content: utils.translate("messages.add_user", interaction.guildId || "")
@@ -46,28 +52,14 @@ const AddUser: Command = {
     }
 };
 
-async function ensureValorantProfile(interaction: BaseCommandInteraction<CacheType>) {
+async function ensureValorantProfile(interaction: BaseCommandInteraction) {
     await interaction.followUp({
         ephemeral: true,
-        content: utils.translate("messages.add_user_error_username", interaction.guildId || "")
+        content: utils.translate("errors.add_user_error_username", interaction.guildId || "")
     });
 }
 
-async function ensureDiscorTarget(interaction: BaseCommandInteraction<CacheType>) {
-    await interaction.followUp({
-        ephemeral: true,
-        content: utils.translate("messages.add_user_discord_error", interaction.guildId || "")
-    });
-}
-
-async function sendToQueue(interaction: BaseCommandInteraction<CacheType>, userGameID: string, discordUserTarget: string) {
-    const findDiscordUser = async (): Promise<Promise<User> | undefined> => {
-        const member = await interaction.guild?.members?.search({
-            query: discordUserTarget
-        });
-        return member?.first()?.user;
-    };
-    const user = await findDiscordUser();
+async function sendToQueue(interaction: BaseCommandInteraction, userGameID: string, discordUserTarget: User): Promise<boolean> {
 
     await queue.add("high", {
         guild: interaction.guildId || "",
@@ -82,10 +74,12 @@ async function sendToQueue(interaction: BaseCommandInteraction<CacheType>, userG
         payload: {
             gameName: userGameID.split("#")[0],
             tagLine: userGameID.split("#")[1],
-            targetDiscordTag: user?.tag,
-            targetDiscordID: user?.id
+            targetDiscordTag: discordUserTarget.tag,
+            targetDiscordID: discordUserTarget.id
         }
     });
+    return true;
+
 }
 
 export default AddUser;

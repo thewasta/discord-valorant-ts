@@ -1,6 +1,7 @@
 {
-  "help": "No sabes cómo funciona el bot? Aquí tienes algunos ejemplos",
+  "help": "Ayudame",
   "localization": "Configurar idioma del bot",
-  "add_user": "Añadir nuevo usuario al ranking. Debes escribir Nombre de usuario y 'tag', también el usuario de Discord al que será asociado, si no hay usuario de discord el perfil de Valorant será asociado a tu perfil de discord",
-  "settings": "Configura el canal en el que se mostrará el ranking, y el permiso necesario para usar los comandos"
+  "add_user": "Añadir nuevo usuario al ranking.",
+  "settings": "Configura el canal en el que se mostrará el ranking",
+  "help_description": "Configurar el lenguage del bot"
 }

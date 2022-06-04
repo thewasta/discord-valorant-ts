@@ -5,13 +5,23 @@ import utils from "../../util/utils";
 
 const FindUser: Command = {
     name: "find",
+    type: "CHAT_INPUT",
     description: "Find user details by GameName#Tag, and check stats from last 10 ranked games",
     options: [
         {
-            name: "username",
-            description: "Example: Username#EUW",
+            name: "select",
+            description: "Select to search by discord profile or valorant.",
             type: Constants.ApplicationCommandOptionTypes.STRING,
-            required: true
+            choices: [
+                {
+                    name: "discord",
+                    value: "discord"
+                },
+                {
+                    name: "valorant",
+                    value: "valorant"
+                }
+            ]
         },
         {
             name: "onlyranks",
@@ -27,7 +37,9 @@ const FindUser: Command = {
         }
     ],
     run: async (client: Client, interaction: BaseCommandInteraction) => {
-        const interactionUserName = interaction.options.get("username")?.value as string,
+        console.log(interaction.options.get("discord"));
+        console.log(interaction.options.get("valorant"));
+        /*const interactionUserName = interaction.options.get("username")?.value as string,
             interactionOnlyRanks = interaction.options.get("onlyranks")?.value as boolean,
             interactionNumberGames = interaction.options.get("games")?.value as number || 10,
             guildId = interaction.guildId as string;
@@ -40,12 +52,12 @@ const FindUser: Command = {
             return;
         }
 
-/*
-        const guildMember: Collection<string, GuildMember> | undefined = await interaction.guild?.members?.search({
-            query: "TheWasta"
-        });
+        /!*
+                const guildMember: Collection<string, GuildMember> | undefined = await interaction.guild?.members?.search({
+                    query: "TheWasta"
+                });
 
-        console.log(guildMember?.first()?.user);*/
+                console.log(guildMember?.first()?.user);*!/
 
         await queue.add("medium", {
             command: {
@@ -58,6 +70,7 @@ const FindUser: Command = {
             guild: interaction.guildId as string,
             channel: interaction.channelId,
             payload: {
+                targetUser: "interaction.user",
                 gameName: interactionUserName.split("#")[0],
                 tagLine: interactionUserName.split("#")[1],
                 ranked: interactionOnlyRanks,
@@ -68,7 +81,7 @@ const FindUser: Command = {
         await interaction.followUp({
             ephemeral: true,
             content: utils.translate("messages.find_user", guildId, interactionUserName)
-        });
+        });*/
     }
 };
 

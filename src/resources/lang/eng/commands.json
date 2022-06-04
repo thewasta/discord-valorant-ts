@@ -1,6 +1,6 @@
 {
-  "help": "Don't how to use bot? Get some example",
+  "help": "Help me",
   "localization": "Configure bot language",
-  "add_user": "Add a new user to ranking. You must to pass Valorant GameName and Tag, also Discord user to associate it. if Discord user is not passed you Valorant profile will be linked to your Discord profile.",
+  "add_user": "Add user to ranking",
   "settings": "Configurate bot channel to show ranking, and permissions"
 }

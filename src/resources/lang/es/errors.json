@@ -1,3 +1,10 @@
 {
-  "add_user_already": "Usuario _REPLACE_ ya existe en el ranking"
+  "add_user_already": "Usuario _REPLACE_ ya existe en el ranking",
+  "add_user_not_found": "Usuario _REPLACE_ no ha sido encontrado",
+  "add_user_discord_error": "Usuario discord no válido: `_REPLACE_`. Ejemplo: TheWasta#7811",
+  "add_user_error_username": "Asegúrate de añadir el tag. Ejemplo: QuizásTeInsulto#EUW",
+  "settings_channel": "Canal configurado no es de texto, por favor selecciona otro canal",
+  "settings_role": "Rol para admin y guest, no pueden ser iguales",
+  "settings_not_owner": "No eres el dueño de este servidor. No puedes usar este comando",
+  "request_failed": "Lo sentimos, pero actualmente estamos teniendo problemas para resolver esta petición"
 }

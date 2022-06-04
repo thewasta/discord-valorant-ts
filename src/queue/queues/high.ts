@@ -1,5 +1,5 @@
 import {DoneCallback, Job} from "bull";
-import AddUser from "../consumer/addUserConsumer";
+import AddUser from "../consumer/high/addUserConsumer";
 import AddUserSubscriber from "../subscriber/addUserSubscriber";
 
 export default {

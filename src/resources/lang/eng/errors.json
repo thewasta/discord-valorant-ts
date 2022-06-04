@@ -1,3 +1,10 @@
 {
-  "add_user_already": "User _REPLACE_ already exist in ranking"
+  "add_user_already": "User _REPLACE_ already exist in ranking",
+  "add_user_not_found": "User _REPLACE_ not found",
+  "add_user_discord_error": "Discord name not valid: `_REPLACE_`. Example: TheWasta#7811 ",
+  "add_user_error_username": "Please make sure to add tag. Example: ValorantPlayer#EUW",
+  "settings_channel": "Configured channel is not text, please select a different channel",
+  "settings_role": "Rol for admin and guest can't equals",
+  "settings_not_owner": "You are not owner of server. You can't use this command",
+  "request_failed": "We apologize for this, but currently we are having problem to resolve this request"
 }
