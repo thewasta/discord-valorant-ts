@@ -1,6 +1,6 @@
 import path from "path";
 
-import {Client} from "discord.js";
+import {Client, Intents} from "discord.js";
 import {config} from "dotenv";
 import ready from "./listener/bot/ready";
 import interactionCreate from "./listener/bot/interactionCreate";
@@ -16,7 +16,13 @@ config({
 const token = process.env.TOKEN;
 
 export const client: Client = new Client({
-    intents: []
+    intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MESSAGES
+    ],
+    partials: [
+        "GUILD_MEMBER"
+    ]
 });
 queue.process();
 ready(client);
