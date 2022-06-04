@@ -1,6 +1,7 @@
 import high from "./high";
 import low from "./low";
 import medium from "./medium";
+import content from "./content";
 import {DoneCallback, Job, JobOptions} from "bull";
 
 interface iJob {
@@ -24,5 +25,6 @@ interface iJobs {
 export const jobs: iJobs = {
     high,
     medium,
-    low
+    low,
+    content
 };
