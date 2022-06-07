@@ -14,7 +14,7 @@ export default {
     },
     async handle(job: Job, done: DoneCallback) {
         switch (job.data.command.name) {
-            case "find":
+            case "find-user":
                 await findUserConsumer(job.data, done);
                 break;
             case "member-remove":

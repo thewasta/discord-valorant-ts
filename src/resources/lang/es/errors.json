@@ -6,5 +6,8 @@
   "settings_channel": "Canal configurado no es de texto, por favor selecciona otro canal",
   "settings_role": "Rol para admin y guest, no pueden ser iguales",
   "settings_not_owner": "No eres el dueño de este servidor. No puedes usar este comando",
-  "request_failed": "Lo sentimos, pero actualmente estamos teniendo problemas para resolver esta petición"
+  "request_failed": "Lo sentimos, pero actualmente estamos teniendo problemas para resolver esta petición",
+  "find_user_error_username": "Asegúrate de añadir el tag. Ejemplo: QuizásTeInsulto#EUW",
+  "find_user_options_filled": "Solamente puedes buscar por Usuario de discord o por usuario de valorant.",
+  "find_user_not_found": "Usuario no encontrado, por favor corrige"
 }

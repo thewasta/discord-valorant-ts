@@ -2,13 +2,7 @@ import Queue from "bull";
 import {jobs} from "./queues";
 
 const queues = Object.values(jobs).map(job => ({
-    bull: new Queue(job.key/* {
-        limiter: {
-            max: 3,
-            duration: 600000,
-            groupKey: "guild"
-        }
-    }*/),
+    bull: new Queue(job.key,),
     name: job.key,
     handle: job.handle,
     options: job.options,
@@ -16,7 +10,7 @@ const queues = Object.values(jobs).map(job => ({
     onError: job.onError
 }));
 
-interface iCommand {
+export interface iCommand {
     by: {
         user: string
         userId: string
@@ -37,7 +31,7 @@ export const queue = {
      * @param queueName The name of queue
      * @param data Data to pass to job
      * */
-    add(queueName: string, data?: iJobData): any {
+    add(queueName: "medium" | "content" | "high" | "low", data?: iJobData): any {
         const queue = this.queues.find(queue => queue.name === queueName);
         if (!queue) {
             console.error(`Queue ${queueName} not found, please make sure queue is configured`);

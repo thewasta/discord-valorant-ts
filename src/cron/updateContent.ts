@@ -17,6 +17,6 @@ export default function (cron: any): void {
      * At 05:30 on day-of-month 10.
      */
     cron.schedule("30 5 10 * *", async function () {
-        await queue.add("content-all");
+        // await queue.add("content-all");
     });
 }

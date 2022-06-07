@@ -17,10 +17,13 @@ export default {
         switch (job.data.command.name) {
             case "adduser":
                 await AddUserSubscriber(job, error);
+                break
         }
     },
     async handle(job: Job, done: DoneCallback) {
         switch (job.data.command.name) {
+            case "find-user":
+                break;
             case "adduser":
                 await AddUser(job.data, done);
         }

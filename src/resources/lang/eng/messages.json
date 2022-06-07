@@ -11,6 +11,8 @@
   "game_tag_not_found": "User `_REPLACE_` not found. Make sure you gave me the correct nick and tag",
   "find_user": "Finding user `_REPLACE_`... This may take a while, please be patient",
   "find_user_finished": "User found...",
+  "find_user_match": "Match date: _REPLACE_",
+  "find_user_embed_title": "Valorant Tracker profile: _REPLACE_",
   "im_bot": "What are you trying? This is a bot.",
   "settings_success": "Bot configure successfully",
   "settings_not_owner": "Bot configure successfully"

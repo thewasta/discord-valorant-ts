@@ -6,5 +6,8 @@
   "settings_channel": "Configured channel is not text, please select a different channel",
   "settings_role": "Rol for admin and guest can't equals",
   "settings_not_owner": "You are not owner of server. You can't use this command",
-  "request_failed": "We apologize for this, but currently we are having problem to resolve this request"
+  "request_failed": "We apologize for this, but currently we are having problem to resolve this request",
+  "find_user_error_username": "Please make sure to add tag. Example: ValorantPlayer#EUW",
+  "find_user_options_filled": "You can only find by discord user or valorant tag",
+  "find_user_not_found": "User not found, please check it."
 }

@@ -18,7 +18,9 @@ const app = {
     RIOT_VAL_TOKEN: process.env.RIOT_VAL_TOKEN as string,
     AUTHOR_ID: process.env.AUTHOR_DISCORD_ID as string,
     PUBLIC_VAL: process.env.PUBLIC_VAL_API as string,
-    CURRENT_ACT: process.env.VALORANT_CURRENT_ACT as string
+    CURRENT_ACT: process.env.VALORANT_CURRENT_ACT as string,
+    MS_IN_MINUTE: 60000,
+    UPDATE_HISTORY_MINUTES: 24
 };
 
 export default app;

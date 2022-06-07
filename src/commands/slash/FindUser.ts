@@ -6,82 +6,71 @@ import utils from "../../util/utils";
 const FindUser: Command = {
     name: "find",
     type: "CHAT_INPUT",
-    description: "Find user details by GameName#Tag, and check stats from last 10 ranked games",
+    description: "Find user details by GameName#Tag, and check stats from last 15 competitive games",
     options: [
         {
-            name: "select",
-            description: "Select to search by discord profile or valorant.",
-            type: Constants.ApplicationCommandOptionTypes.STRING,
-            choices: [
-                {
-                    name: "discord",
-                    value: "discord"
-                },
+            name: "by",
+            description: "Select option",
+            type: Constants.ApplicationCommandOptionTypes.SUB_COMMAND,
+            options: [
                 {
                     name: "valorant",
-                    value: "valorant"
+                    description: "Find player by Valorant#Tag",
+                    type: Constants.ApplicationCommandOptionTypes.STRING
+                },
+                {
+                    name: "discord",
+                    description: "Find player by Discord (only if already added)",
+                    type: Constants.ApplicationCommandOptionTypes.USER
                 }
             ]
-        },
-        {
-            name: "onlyranks",
-            description: "Filter result by only rankeds (last 15 games, in 3 days)",
-            type: Constants.ApplicationCommandOptionTypes.BOOLEAN,
-            required: false
-        },
-        {
-            name: "games",
-            description: "Want to filter last X games? Default: 10",
-            type: Constants.ApplicationCommandOptionTypes.NUMBER,
-            required: false
         }
     ],
     run: async (client: Client, interaction: BaseCommandInteraction) => {
-        console.log(interaction.options.get("discord"));
-        console.log(interaction.options.get("valorant"));
-        /*const interactionUserName = interaction.options.get("username")?.value as string,
-            interactionOnlyRanks = interaction.options.get("onlyranks")?.value as boolean,
-            interactionNumberGames = interaction.options.get("games")?.value as number || 10,
-            guildId = interaction.guildId as string;
+        const guildId = interaction.guildId as string;
+        const interactionOptionDiscordUser = interaction.options.getUser("discord");
+        const interactionOptionValorantUser = interaction.options.get("valorant");
 
-        if (!interactionUserName.includes("#")) {
+        if (interactionOptionValorantUser && interactionOptionDiscordUser) {
             await interaction.followUp({
                 ephemeral: true,
-                content: utils.translate("messages.add_user_error_username", guildId)
+                content: utils.translate("errors.find_user_options_filled", guildId)
             });
             return;
         }
-
-        /!*
-                const guildMember: Collection<string, GuildMember> | undefined = await interaction.guild?.members?.search({
-                    query: "TheWasta"
-                });
-
-                console.log(guildMember?.first()?.user);*!/
+        let payload;
+        let interactionUserName;
+        if (interactionOptionValorantUser) {
+            const valorantUser = interactionOptionValorantUser.value as string;
+            interactionUserName = valorantUser;
+            payload = {
+                tagLine: valorantUser.split("#")[1],
+                gameName: valorantUser.split("#")[0]
+            };
+        } else {
+            interactionUserName = interactionOptionDiscordUser?.tag;
+            payload = {
+                targetUser: interactionOptionDiscordUser?.id
+            };
+        }
 
         await queue.add("medium", {
+            guild: guildId,
             command: {
+                name: "find-user",
                 by: {
-                    user: interaction.user.tag,
-                    userId: interaction.user.id
-                },
-                name: "find"
+                    userId: interaction.user.id,
+                    user: interaction.user.tag
+                }
             },
-            guild: interaction.guildId as string,
             channel: interaction.channelId,
-            payload: {
-                targetUser: "interaction.user",
-                gameName: interactionUserName.split("#")[0],
-                tagLine: interactionUserName.split("#")[1],
-                ranked: interactionOnlyRanks,
-                games: interactionNumberGames
-            }
+            payload
         });
 
         await interaction.followUp({
             ephemeral: true,
             content: utils.translate("messages.find_user", guildId, interactionUserName)
-        });*/
+        });
     }
 };
 

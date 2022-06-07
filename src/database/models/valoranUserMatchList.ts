@@ -2,29 +2,36 @@ import {Schema, model} from "mongoose";
 import {HistoryMatches} from "../../lib/valorant/types/match";
 
 export interface IValorantUserMatchList {
-    guild: string;
     ds_user_id: string;
-    ds_user: string;
     puuid: string;
     lastUpdate: number,
-    matchList: HistoryMatches[];
+    history: HistoryMatches[];
 }
 
 const valorantUserMatchList = new Schema<IValorantUserMatchList>({
-    guild: {
-        type: String, required: true
-    },
-    ds_user: {
-        type: String, required: true
-    },
     ds_user_id: {
         type: String, required: true
     },
     puuid: {
         type: String, required: true
     },
-    matchList: {
-        type: [], required: true
+    history: {
+        type: [
+            {
+                matchId: {
+                    type: String,
+                    required: true
+                },
+                gameStartTime: {
+                    type: Number,
+                    require: true
+                },
+                teamId: {
+                    type: String,
+                    required: true
+                }
+            }
+        ], required: true
     },
     lastUpdate: {
         type: Number,
@@ -34,4 +41,4 @@ const valorantUserMatchList = new Schema<IValorantUserMatchList>({
     timestamps: true
 });
 
-export default model<IValorantUserMatchList>("UserMatchList", valorantUserMatchList);
+export default model<IValorantUserMatchList>("matchhistory", valorantUserMatchList);

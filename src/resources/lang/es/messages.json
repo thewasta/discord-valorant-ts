@@ -8,7 +8,10 @@
   "add_user_successfully": "Usuario `_REPLACE_` añadido correctamente.",
   "game_tag_not_found": "Usuario `_REPLACE_` no encontrado. Asegurate de escribir correctamente los datos",
   "find_user": "Buscando usuario `_REPLACE_`... Esto llevará un momento, sé paciente",
+  "find_user_target_not_found": "Este usuario no tiene un perfil valorant asociado.",
   "find_user_finished": "Usuario encontrado...",
+  "find_user_match": "Partida con fecha: _REPLACE_",
+  "find_user_embed_title": "Perfil Valorant Tracker: _REPLACE_",
   "im_bot": "¿Qué intentas? Este es un bot.",
   "settings_success": "Bot configurado correctamente"
 }
